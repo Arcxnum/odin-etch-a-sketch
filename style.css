@@ -1,0 +1,46 @@
+#container {
+    width: 48%; /* Set container to 48% width */
+    display: flex;
+    border-style: solid;
+}
+  
+#gridContainer { /* I have done this so the squares wrap around the space it has instead of squishing through the sides */
+    display: flex;
+    flex-wrap: wrap;
+}
+#gridContainer div {
+    display: flex;
+    flex-grow: 1; /* I have to specify this so the canvas can accomadate the size of the squares if it changes */
+    flex-shrink: 1;
+    width: 100px; 
+    height: 100px; 
+}
+
+#resetBtn {
+    font-size: 5em;
+    margin: 20px;
+    height: 100px;
+    font-family: sans-serif, Helvetica, Arial;
+    border-radius: 25px;
+    background-color: rgb(54, 141, 255);
+    color: white;
+}
+#eraserBtn {
+    font-size: 5em;
+    margin: 20px;
+    height: 100px;
+    font-family: sans-serif, Helvetica, Arial;
+    border-radius: 25px;
+    background-color: rgb(54, 141, 255);
+    color: white;
+}
+#sizeBtn {
+    font-size: 5em;
+    margin: 20px;
+    height: 100px;
+    font-family: sans-serif, Helvetica, Arial;
+    border-radius: 25px;
+    background-color: rgb(54, 141, 255);
+    color: white;
+}
+
