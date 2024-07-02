@@ -1,27 +1,35 @@
-let numGridElements = 16 * 16; //starting grid size
+const container = document.querySelector("#container");
+const gridBtn = document.querySelector("#grid");
+let promptInput = 0;
+function createGrid(promptInput){
 
-let gridContainer = document.querySelector("#gridContainer");
-let childElements = gridContainer.querySelectorAll("*"); //to select all boxes
+    let widthValue = `calc(600px / ${promptInput})`;
+    let heightValue = widthValue;
 
-function changeColor(event) {
-    let hoveredSquare = event.target;
-    hoveredSquare.style.backgroundColor = "black";
+    for(i = 0; i < (promptInput * promptInput); i++){
+        let div = document.createElement("div");
+        div.setAttribute("style", `width: ${widthValue}; height: ${heightValue}; `);
+        container.appendChild(div);
+        div.addEventListener("mouseover", () => {
+            div.style.backgroundColor = "black";
+        });
+    }
 }
 
-for (let i = 0; i < numGridElements; i++) {
-    let containerDiv = document.createElement("div");
-    containerDiv.classList = "square";
-    containerDiv.setAttribute("style", "width: 50px; height: 50px;");
-    gridContainer.appendChild(containerDiv);
+gridBtn.addEventListener('click', () => {
+    while (container.firstChild) {
+        container.firstChild.remove();
+      }
 
-    containerDiv.addEventListener("mouseover", changeColor);
-}
+    promptInput = Number(promptInput); 
+    promptInput = prompt('Enter the grid size (Between 1 - 100)');
+    if(promptInput >= 1 && promptInput <= 100){
+        createGrid(promptInput);
+    }
+    else {
+        alert("Invalid, defaulting to size 16");
+        createGrid(16);
+    }
+})
 
-let resetBtn = document.querySelector("#resetBtn");
-let eraserBtn = document.querySelector("#eraserBtn");
-let sizeBtn = document.querySelector("#sizeBtn");
-
-resetBtn.addEventListener("click", () => {
-    const allSquares = gridContainer.querySelectorAll(".square");
-    allSquares.forEach(square => square.style.backgroundColor = "white");
-});
+createGrid(16);
